@@ -1,2 +1,2 @@
 # Library-app
-Library app, add books to reading list.
+Library app. Built with HTML, CSS, JS. Part of The Odin Project course.
