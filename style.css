@@ -35,6 +35,7 @@ nav {
 nav h1 {
     margin: 0px 50px;
     font-size: 2.2rem;
+    text-align: center;
 }
 
 nav button {
@@ -102,6 +103,7 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
+    box-shadow: 0px 0px 2px black;
 }
 
 .book-btns {
