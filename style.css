@@ -96,7 +96,7 @@ main {
     padding: 10px;
     margin: 7px;
     height: fit-content;
-    min-height: 200px;
+    min-height: 310px;
     display: flex;
     flex-direction: column;
     justify-content: center;
