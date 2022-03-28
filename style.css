@@ -1,0 +1,25 @@
+:root {
+    --navbar-color: rgb(214, 214, 214);
+}
+
+body {
+    margin: 0px;
+}
+
+nav {
+    position: fixed;
+    top: 0px;
+    margin: 0px auto;
+    padding: 0px 50px;
+    height: 100px;
+    width: 100%;
+    border-bottom: 1px black solid;
+    background-color: var(--navbar-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav h1 {
+
+}
