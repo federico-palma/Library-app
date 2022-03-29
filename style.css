@@ -1,8 +1,21 @@
-:root {
-    --navbar-color: rgb(231, 231, 231);
-    --positive-color: rgb(11, 156, 11);
-    --negative-color: rgb(214, 25, 25);
-    --book-card-color: rgb(139, 144, 209);
+:root.light-theme {
+    --body-color: #188290;
+    --navbar-color: #20717c;
+    --navbar-font-color: #ffffff;
+    --positive-color: #0b9c0b;
+    --negative-color: #d61919;
+    --book-card-color: #EEEBDF;
+    --bookshelf-background-color: rgb(243, 243, 243);
+}
+
+:root.dark-theme {
+    --body-color: #363636;
+    --navbar-color: #1d1d1d;
+    --navbar-font-color: #ffffff;
+    --positive-color: #0b9c0b;
+    --negative-color: #d61919;
+    --book-card-color: #EEEBDF;
+    --bookshelf-background-color: rgb(160, 160, 160);
 }
 
 * {
@@ -12,6 +25,7 @@
 
 body {
     margin: 0px;
+    background-color: var(--body-color);
 }
 
 button:active {
@@ -37,6 +51,7 @@ nav {
 }
 
 nav h1 {
+    color: var(--navbar-font-color);
     margin: 0px 50px;
     font-size: 2.2rem;
     text-align: center;
@@ -55,11 +70,11 @@ nav button {
 main {
     margin: auto;
     margin-top: 100px;
+    margin-bottom: 0px;
     width: 90%;
 }
 
 #library-menu {
-    border-bottom: 1px solid grey;
     height: 50px;
     padding: 50px;
     display: flex;
@@ -87,7 +102,9 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    height: fit-content;
+    min-height: fit-content;
+    background-color: var(--bookshelf-background-color);
+    border-radius: 10px;
 }
 
 .book-card {
@@ -103,6 +120,7 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
+    border: 2px solid grey;
     box-shadow: 0px 0px 1px black;
 }
 
@@ -116,12 +134,8 @@ main {
     max-width: 50%;
     height: 50px;
     border-radius: 5px;
-    border: none;
+    border: 1px solid black;
     padding: 0px 20px;
-}
-
-.book-btns button:hover {
-    cursor: pointer;
 }
 
 .delete-book {
@@ -158,6 +172,10 @@ main {
     width: 90%;
     font-size: 1.1rem;
     height: 30px;
+}
+
+#newBookForm label {
+    color: var(--navbar-font-color);
 }
 
 #newBookForm > div {

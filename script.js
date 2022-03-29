@@ -1,3 +1,16 @@
+////// Handle Theme change //////
+const root = document.documentElement;
+root.className = 'light-theme';
+
+const changeThemeButton = document.getElementById('changeThemeBtn')
+changeThemeButton.addEventListener('click', setTheme)
+
+function setTheme() {
+    const newTheme = root.className === 'light-theme' ? 'dark-theme' : 'light-theme';
+    root.className = newTheme;
+}
+
+
 ////// Book Library //////
 let myLibrary = []
 
