@@ -35,6 +35,7 @@ function createBookCard() {
     newBtnsDiv.appendChild(newDeleteBtn);
 
     newToogleBeenReadBtn.addEventListener('click', changeBeenReadStatus)
+    newDeleteBtn.addEventListener('click', deleteBook)
 
     newBookCard.appendChild(newBookTitle)
     newBookCard.appendChild(newBookAuthor)
@@ -69,9 +70,18 @@ function changeBeenReadStatus() {
     refreshBookShelf()
 }
 
-const bookShelf = document.getElementById('book-shelf')
+function deleteBook() {
+    let bookIndex = this.parentNode.parentNode.getAttribute('bookindex')
+
+    if (confirm(`Are you sure you want to delete the book: ${myLibrary[bookIndex].title}?`)) {
+        myLibrary.splice(bookIndex, 1)
+        refreshBookShelf()
+    }
+}
 
 // Function sets book from myLibrary to Book Shelf
+const bookShelf = document.getElementById('book-shelf')
+
 function setBookShelf() {
     for (let i = 0; i < myLibrary.length; i++) {
         let bookCard = setBookCardContent(myLibrary[i], i)
