@@ -1,4 +1,4 @@
-// Book Library
+////// Book Library //////
 const myLibrary = [
     {title: 'Lord of the Rings', author: 'JRR Tolkien', pages: 3000, beenRead: true},
     {title: 'A song of Ice and Fire', author: 'GRR Martin', pages: 2000, beenRead: false},
@@ -76,13 +76,20 @@ function clearBookShelf() {
     bookShelf.innerHTML = ''
 }
 
-// Add new book
+function refreshBookShelf(){
+    clearBookShelf()
+    setBookShelf()
+}
+
+//////// Add new book /////////
 const newBookBtn = document.getElementById('add-book-btn')
 const newBookForm = document.getElementById('newBookForm')
 const newBookTitle = document.getElementById('newBookTitle')
 const newBookAuthor = document.getElementById('newBookAuthor')
 const newBookPages = document.getElementById('newBookPages')
 const newBookBeenRead = document.getElementById('has-been-read-checkbox')
+const submitNewBookBtn = document.getElementById('submit-new-book')
+const cancelNewBookBtn = document.getElementById('cancel-new-book')
 
 newBookBtn.addEventListener('click', () => {
     toggleNewBookForm()
@@ -97,11 +104,23 @@ function toggleNewBookForm() {
     refreshForm()
 }
 
+submitNewBookBtn.addEventListener('click', createNewBook)
+cancelNewBookBtn.addEventListener('click', toggleNewBookForm)
+
+// Function cretes new Book object and appends it to library
+function createNewBook() {
+    if (newBookTitle.value && newBookAuthor.value && newBookPages.value) {
+        let createdBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookBeenRead.checked)
+        myLibrary.push(createdBook)
+        refreshBookShelf()
+        toggleNewBookForm()
+    }
+}
+
 function refreshForm() {
     newBookTitle.value = ''
     newBookAuthor.value = ''
     newBookPages.value = ''
-    newBookForm.value = ''
     newBookBeenRead.checked = false
 }
 
