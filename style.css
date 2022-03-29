@@ -99,7 +99,7 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
-    box-shadow: 0px 0px 2px black;
+    box-shadow: 0px 0px 1px black;
 }
 
 .book-btns {
