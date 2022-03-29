@@ -62,7 +62,7 @@ function setBookCardContent(bookInfo) {
 const bookShelf = document.getElementById('book-shelf')
 
 // Function sets book from myLibrary to Book Shelf
-function setLibrary() {
+function setBookShelf() {
     for (let i = 0; i < myLibrary.length; i++) {
         let bookCard = setBookCardContent(myLibrary[i])
         bookShelf.appendChild(bookCard)
@@ -70,10 +70,39 @@ function setLibrary() {
 }
 
 // Set initial books
-setLibrary()
+setBookShelf()
 
 function clearBookShelf() {
     bookShelf.innerHTML = ''
+}
+
+// Add new book
+const newBookBtn = document.getElementById('add-book-btn')
+const newBookForm = document.getElementById('newBookForm')
+const newBookTitle = document.getElementById('newBookTitle')
+const newBookAuthor = document.getElementById('newBookAuthor')
+const newBookPages = document.getElementById('newBookPages')
+const newBookBeenRead = document.getElementById('has-been-read-checkbox')
+
+newBookBtn.addEventListener('click', () => {
+    toggleNewBookForm()
+})
+
+function toggleNewBookForm() {
+    if (newBookForm.classList.contains('hide-new-book-form')) {
+        newBookForm.classList.remove('hide-new-book-form')
+    } else {
+        newBookForm.classList.add('hide-new-book-form')
+    }
+    refreshForm()
+}
+
+function refreshForm() {
+    newBookTitle.value = ''
+    newBookAuthor.value = ''
+    newBookPages.value = ''
+    newBookForm.value = ''
+    newBookBeenRead.checked = false
 }
 
 function Book(title, author, pages, beenRead) {
