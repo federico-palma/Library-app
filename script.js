@@ -1,12 +1,5 @@
 ////// Book Library //////
-const myLibrary = [
-    {title: 'Lord of the Rings', author: 'JRR Tolkien', pages: 3000, beenRead: true},
-    {title: 'A song of Ice and Fire', author: 'GRR Martin', pages: 2000, beenRead: false},
-    {title: 'Lord of the Flies', author: 'William Goulding', pages: 300, beenRead: true},
-    {title: 'Frankestein', author: 'Mary Shelly', pages: 400, beenRead: true},
-    {title: '12 Rules for Life', author: 'Jordan Peterson', pages: 1000, beenRead: false},
-    {title: 'I, Robot', author: 'Isaac Azimov', pages: 350, beenRead: true},
-]
+let myLibrary = []
 
 // Function creates and returns Book card elements.
 function createBookCard() {
@@ -67,6 +60,7 @@ function setBookCardContent(bookInfo, bookIndex) {
 function changeBeenReadStatus() {
     let bookIndex = this.parentNode.parentNode.getAttribute('bookindex')
     myLibrary[bookIndex].beenRead = !myLibrary[bookIndex].beenRead
+    saveLibraryToLocalStorage()
     refreshBookShelf()
 }
 
@@ -75,6 +69,7 @@ function deleteBook() {
 
     if (confirm(`Are you sure you want to delete the book: ${myLibrary[bookIndex].title}?`)) {
         myLibrary.splice(bookIndex, 1)
+        saveLibraryToLocalStorage()
         refreshBookShelf()
     }
 }
@@ -83,9 +78,11 @@ function deleteBook() {
 const bookShelf = document.getElementById('book-shelf')
 
 function setBookShelf() {
-    for (let i = 0; i < myLibrary.length; i++) {
-        let bookCard = setBookCardContent(myLibrary[i], i)
-        bookShelf.appendChild(bookCard)
+    if (myLibrary) {
+        for (let i = 0; i < myLibrary.length; i++) {
+            let bookCard = setBookCardContent(myLibrary[i], i)
+            bookShelf.appendChild(bookCard)
+        }
     }
 }
 
@@ -99,7 +96,22 @@ function refreshBookShelf(){
 }
 
 // Set initial books
+retrieveSavedLibrary()
 setBookShelf()
+
+// Handle local Storage
+function saveLibraryToLocalStorage() {
+    let stringifiedLibrary = JSON.stringify(myLibrary)
+    localStorage.setItem('bookLibrary', stringifiedLibrary)
+}
+
+function retrieveSavedLibrary() {
+    if (localStorage.getItem('bookLibrary')) {
+        let stringifiedLibrary = localStorage.getItem('bookLibrary')
+        let parsedLibrary = JSON.parse(stringifiedLibrary)
+        myLibrary = parsedLibrary 
+    }
+}
 
 //////// Add new book /////////
 const newBookBtn = document.getElementById('add-book-btn')
@@ -117,11 +129,11 @@ newBookBtn.addEventListener('click', () => {
 
 function toggleNewBookForm() {
     if (newBookForm.classList.contains('hide-new-book-form')) {
+        refreshForm()
         newBookForm.classList.remove('hide-new-book-form')
     } else {
         newBookForm.classList.add('hide-new-book-form')
     }
-    refreshForm()
 }
 
 submitNewBookBtn.addEventListener('click', createNewBook)
@@ -132,8 +144,9 @@ function createNewBook() {
     if (newBookTitle.value && newBookAuthor.value && newBookPages.value) {
         let createdBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookBeenRead.checked)
         myLibrary.push(createdBook)
-        refreshBookShelf()
         toggleNewBookForm()
+        saveLibraryToLocalStorage()
+        refreshBookShelf()
     }
 }
 
