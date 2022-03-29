@@ -76,6 +76,10 @@ main {
     padding: 10px;
 }
 
+#warning-message {
+    text-align: center;
+}
+
 #book-shelf {
     margin: auto;
     padding: 15px;

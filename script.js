@@ -1,6 +1,17 @@
 ////// Book Library //////
 let myLibrary = []
 
+// Handle warning message
+const warningMessage = document.getElementById('warning-message')
+
+function showWarningMessage() {
+    warningMessage.style.visibility = 'visible'
+}
+
+function hideWarningMessage() {
+    warningMessage.style.visibility = 'hidden'
+}
+
 // Function creates and returns Book card elements.
 function createBookCard() {
     let newBookCard = document.createElement('div');
@@ -78,11 +89,14 @@ function deleteBook() {
 const bookShelf = document.getElementById('book-shelf')
 
 function setBookShelf() {
-    if (myLibrary) {
+    if (myLibrary.length > 0) {
+        hideWarningMessage()
         for (let i = 0; i < myLibrary.length; i++) {
             let bookCard = setBookCardContent(myLibrary[i], i)
             bookShelf.appendChild(bookCard)
         }
+    } else {
+        showWarningMessage()
     }
 }
 
