@@ -34,6 +34,8 @@ function createBookCard() {
     newBtnsDiv.appendChild(newToogleBeenReadBtn);
     newBtnsDiv.appendChild(newDeleteBtn);
 
+    newToogleBeenReadBtn.addEventListener('click', changeBeenReadStatus)
+
     newBookCard.appendChild(newBookTitle)
     newBookCard.appendChild(newBookAuthor)
     newBookCard.appendChild(newBookPages)
@@ -44,9 +46,10 @@ function createBookCard() {
 }
 
 // Function sets content for newly created Book Card.
-function setBookCardContent(bookInfo) {
+function setBookCardContent(bookInfo, bookIndex) {
     newBookCardElements = createBookCard()
 
+    newBookCardElements[0].setAttribute('bookindex', bookIndex)
     newBookCardElements[1].textContent = bookInfo.title
     newBookCardElements[2].textContent = bookInfo.author
     newBookCardElements[3].textContent = bookInfo.pages + ' pages'
@@ -59,18 +62,22 @@ function setBookCardContent(bookInfo) {
     return newBookCardElements[0]
 }
 
+// Functions for card buttons
+function changeBeenReadStatus() {
+    let bookIndex = this.parentNode.parentNode.getAttribute('bookindex')
+    myLibrary[bookIndex].beenRead = !myLibrary[bookIndex].beenRead
+    refreshBookShelf()
+}
+
 const bookShelf = document.getElementById('book-shelf')
 
 // Function sets book from myLibrary to Book Shelf
 function setBookShelf() {
     for (let i = 0; i < myLibrary.length; i++) {
-        let bookCard = setBookCardContent(myLibrary[i])
+        let bookCard = setBookCardContent(myLibrary[i], i)
         bookShelf.appendChild(bookCard)
     }
 }
-
-// Set initial books
-setBookShelf()
 
 function clearBookShelf() {
     bookShelf.innerHTML = ''
@@ -80,6 +87,9 @@ function refreshBookShelf(){
     clearBookShelf()
     setBookShelf()
 }
+
+// Set initial books
+setBookShelf()
 
 //////// Add new book /////////
 const newBookBtn = document.getElementById('add-book-btn')
@@ -117,13 +127,6 @@ function createNewBook() {
     }
 }
 
-function refreshForm() {
-    newBookTitle.value = ''
-    newBookAuthor.value = ''
-    newBookPages.value = ''
-    newBookBeenRead.checked = false
-}
-
 function Book(title, author, pages, beenRead) {
     this.title = title
     this.author = author
@@ -132,4 +135,11 @@ function Book(title, author, pages, beenRead) {
     this.info = () => {
         return `${this.title} by ${this.author}, ${this.pages} pages long. ${this.beenRead ? 'Has been read' : 'Not read yet'} `
     }
+}
+
+function refreshForm() {
+    newBookTitle.value = ''
+    newBookAuthor.value = ''
+    newBookPages.value = ''
+    newBookBeenRead.checked = false
 }
