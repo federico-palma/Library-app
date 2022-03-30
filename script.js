@@ -197,3 +197,47 @@ function refreshForm() {
     newBookPages.value = ''
     newBookBeenRead.checked = false
 }
+
+//////// Sort function /////////
+let sortButtons = document.getElementsByClassName('sort-button')
+let currentSortType
+
+for (let i = 0; i < sortButtons.length; i++) {
+    sortButtons[i].addEventListener('click', function() {
+        removeActiveClass()
+        this.classList.add('active-sort-button')
+        currentSortType = sortButtons[i].id
+        sortBooks()
+    })
+}
+
+function sortBooks() {
+    switch (currentSortType) {
+        case 'title-sort':
+            myLibrary.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
+            break;
+    
+        case 'author-sort':
+            myLibrary.sort((a, b) => a.author.toLowerCase().localeCompare(b.author.toLowerCase()))
+            break;
+    
+        case 'pages-sort':
+            myLibrary.sort((a, b) => a.pages - b.pages)
+            break;
+    
+        case 'been-read-sort':
+            myLibrary.sort((a, b) => a.beenRead - b.beenRead)
+            break;
+    
+        default:
+            myLibrary.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
+            break;
+    }
+    refreshBookShelf()
+}
+
+function removeActiveClass() {
+    for (let i = 0; i < sortButtons.length; i++) {
+        sortButtons[i].classList.remove('active-sort-button')
+    }
+}
