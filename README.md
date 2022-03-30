@@ -5,6 +5,6 @@
 
 Library app. Built with HTML, CSS, JavaScript. 
 
-The app let's you have a personal bookshelf to keep track of the books that you have read or want to read in the future.
+The app let's you have a personal bookshelf to keep track of the books that you have read or want to read in the future. Saving your reading list in the local storage of your browser.
 
 Part of The Odin Project course.
