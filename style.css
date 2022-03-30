@@ -58,12 +58,13 @@ nav h1 {
 }
 
 nav button {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     padding: 4px;
     margin: 0px 50px;
     border: 1px solid black;
-    border-radius: 50%;
+    border-radius: 25%;
+    /* font-size: 1rem; */
 }
 
 /* Main Section */

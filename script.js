@@ -10,6 +10,19 @@ function setTheme() {
     root.className = newTheme;
 }
 
+// Handle local Storage
+function saveLibraryToLocalStorage() {
+    let stringifiedLibrary = JSON.stringify(myLibrary)
+    localStorage.setItem('bookLibrary', stringifiedLibrary)
+}
+
+function retrieveSavedLibrary() {
+    if (localStorage.getItem('bookLibrary')) {
+        let stringifiedLibrary = localStorage.getItem('bookLibrary')
+        let parsedLibrary = JSON.parse(stringifiedLibrary)
+        myLibrary = parsedLibrary 
+    }
+}
 
 ////// Book Library //////
 let myLibrary = []
@@ -125,20 +138,6 @@ function refreshBookShelf(){
 // Set initial books
 retrieveSavedLibrary()
 setBookShelf()
-
-// Handle local Storage
-function saveLibraryToLocalStorage() {
-    let stringifiedLibrary = JSON.stringify(myLibrary)
-    localStorage.setItem('bookLibrary', stringifiedLibrary)
-}
-
-function retrieveSavedLibrary() {
-    if (localStorage.getItem('bookLibrary')) {
-        let stringifiedLibrary = localStorage.getItem('bookLibrary')
-        let parsedLibrary = JSON.parse(stringifiedLibrary)
-        myLibrary = parsedLibrary 
-    }
-}
 
 //////// Add new book /////////
 const newBookBtn = document.getElementById('add-book-btn')
