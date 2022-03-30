@@ -88,7 +88,7 @@ function setBookCardContent(bookInfo, bookIndex) {
     newBookCardElements[0].setAttribute('bookindex', bookIndex)
     newBookCardElements[1].textContent = bookInfo.title
     newBookCardElements[2].textContent = bookInfo.author
-    newBookCardElements[3].textContent = bookInfo.pages + ' pages'
+    newBookCardElements[3].textContent = bookInfo.pages == 1 ? bookInfo.pages + ' page' : bookInfo.pages + ' pages'
     if (bookInfo.beenRead) {
         newBookCardElements[4].textContent = 'Book read: ✓'
     } else {
