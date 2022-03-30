@@ -1,6 +1,6 @@
 ////// Handle Theme change //////
 const root = document.documentElement;
-root.className = 'light-theme';
+root.className = localStorage.getItem('currentTheme') ? localStorage.getItem('currentTheme') : 'light-theme';
 
 const changeThemeButton = document.getElementById('changeThemeBtn')
 changeThemeButton.addEventListener('click', setTheme)
@@ -8,6 +8,7 @@ changeThemeButton.addEventListener('click', setTheme)
 function setTheme() {
     const newTheme = root.className === 'light-theme' ? 'dark-theme' : 'light-theme';
     root.className = newTheme;
+    saveThemetoLocalStorage()
 }
 
 // Handle local Storage
@@ -22,6 +23,10 @@ function retrieveSavedLibrary() {
         let parsedLibrary = JSON.parse(stringifiedLibrary)
         myLibrary = parsedLibrary 
     }
+}
+
+function saveThemetoLocalStorage() {
+    localStorage.setItem('currentTheme', root.className)
 }
 
 ////// Book Library //////
