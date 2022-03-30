@@ -5,7 +5,8 @@
     --navbar-color: #20717c;
     --navbar-font-color: #ffffff;
     --book-card-color: #EEEBDF;
-    --bookshelf-background-color: rgb(243, 243, 243);
+    --bookshelf-background-color: #f3f3f3;
+    --sort-title-color: #000000;
 }
 
 :root.dark-theme {
@@ -16,6 +17,7 @@
     --navbar-font-color: #ffffff;
     --book-card-color: #EEEBDF;
     --bookshelf-background-color: rgb(160, 160, 160);
+    --sort-title-color: #ffffff;
 }
 
 * {
@@ -64,7 +66,6 @@ nav button {
     margin: 0px 50px;
     border: 1px solid black;
     border-radius: 25%;
-    /* font-size: 1rem; */
 }
 
 /* Sort buttons */
@@ -73,11 +74,19 @@ nav button {
     align-items: center;
     margin: 0px 40px;
     color: white;
+    border-radius: 10px;
+    background-color: var(--bookshelf-background-color);
 }
 
 #sort-menu h3 {
     margin: 0px 20px;
+    color: var(--sort-title-color);
 }
+
+#been-read-sort {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+} 
 
 .sort-button {
     height: 50px;
@@ -85,8 +94,9 @@ nav button {
     border: none;
 }
 
+
 .active-sort-button {
-    background-color: var(--positive-color);
+    background-color: var(--navbar-color);
     color: white;
 }
 
@@ -112,6 +122,8 @@ main {
     border-radius: 10px;
     border: none;
     font-size: 1.2rem;
+    min-height: 50px;
+    height: fit-content;
     padding: 10px;
 }
 
